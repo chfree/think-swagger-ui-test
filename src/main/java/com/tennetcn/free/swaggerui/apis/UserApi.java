@@ -45,7 +45,7 @@ public class UserApi {
     }
 
     @PostMapping("postData")
-    public Object postData(String userName, String password){
+    public Object postData(@ApiParam(value = "用户名")String userName, String password){
         Map<String,String> result = new HashMap<>();
         result.put("userName",userName);
         result.put("password",password);
@@ -54,7 +54,15 @@ public class UserApi {
     }
 
     @PostMapping("postDataJson")
-    public Object postDataJson(@RequestBody PostDataJsonReq req){
+    public Object postDataJson(@RequestBody @ApiParam(value = "req对象") PostDataJsonReq req){
+        Map<String,Object> result = new HashMap<>();
+        result.put("req",req);
+
+        return result;
+    }
+
+    @PostMapping("postDataJson1")
+    public Object postDataJson1(@RequestBody @ApiParam(value = "req1对象") PostDataJsonReq1 req){
         Map<String,Object> result = new HashMap<>();
         result.put("req",req);
 
