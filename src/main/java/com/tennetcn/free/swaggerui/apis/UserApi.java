@@ -2,6 +2,7 @@ package com.tennetcn.free.swaggerui.apis;
 
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,18 +55,18 @@ public class UserApi {
     }
 
     @PostMapping("postDataJson")
-    public Object postDataJson(@RequestBody @ApiParam(value = "req对象") PostDataJsonReq req){
-        Map<String,Object> result = new HashMap<>();
-        result.put("req",req);
+    public PostDataJsonResp postDataJson(@RequestBody @ApiParam(value = "req对象") PostDataJsonReq req){
+        PostDataJsonResp resp = new PostDataJsonResp();
+        BeanUtils.copyProperties(req,resp);
 
-        return result;
+        return resp;
     }
 
     @PostMapping("postDataJson1")
-    public Object postDataJson1(@RequestBody @ApiParam(value = "req1对象") PostDataJsonReq1 req){
-        Map<String,Object> result = new HashMap<>();
-        result.put("req",req);
+    public PostDataJsonResp1 postDataJson1(@RequestBody @ApiParam(value = "req1对象") PostDataJsonReq1 req){
+        PostDataJsonResp1 resp = new PostDataJsonResp1();
+        BeanUtils.copyProperties(req,resp);
 
-        return result;
+        return resp;
     }
 }
