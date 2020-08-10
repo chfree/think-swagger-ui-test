@@ -1,9 +1,11 @@
 package com.tennetcn.free.swaggerui.apis;
 
+import com.tennetcn.free.core.message.web.BaseResponse;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +68,15 @@ public class UserApi {
     public PostDataJsonResp1 postDataJson1(@RequestBody @ApiParam(value = "req1对象") PostDataJsonReq1 req){
         PostDataJsonResp1 resp = new PostDataJsonResp1();
         BeanUtils.copyProperties(req,resp);
+
+        return resp;
+    }
+
+    @PostMapping("pathTest/{name}/{age}")
+    public BaseResponse pathTest(@PathVariable("name")String name,@PathVariable("age") int age){
+        BaseResponse resp = new BaseResponse();
+        resp.put("name",name);
+        resp.put("age",age);
 
         return resp;
     }
